@@ -3,19 +3,19 @@ pipeline {
     stages {
     stage('git repo & clean') {
     steps {
-        bat "rmdir /s /q enotes_api_service"
+        bat "rmdir /s /q Enotes_Api_Service"
         bat "git clone https://github.com/mahesht11/Enotes_Api_Service.git"
         bat "mvn clean -f enotes_api_service"
         }
     }
     stage('install'){
         steps {
-        bat "mvn install -f enotes_api_service"
+        bat "mvn install -f Enotes_Api_Service"
         }
     }
     stage('test'){
         steps{
-        bat "mvn test -f enotes_api_service"
+        bat "mvn test -f Enotes_Api_Service"
         }
     }
  stage('Sonarqube') {
@@ -27,7 +27,7 @@ pipeline {
 }
     stage('package'){
     steps{
-        bat "mvn package -f enotes_api_service"
+        bat "mvn package -f Enotes_Api_Service"
         }
     }
 
