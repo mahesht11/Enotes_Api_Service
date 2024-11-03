@@ -2,6 +2,7 @@ package com.enotes.api.serviceImpl;
 
 import com.enotes.api.dto.CategoryDto;
 import com.enotes.api.entity.Category;
+import com.enotes.api.exception.ResourceNotFoundException;
 import com.enotes.api.repository.CategoryRepository;
 import com.enotes.api.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +72,18 @@ public class CategoryServiceImpl implements CategoryService {
             return "Object deleted the Successfully!";
         }else{
             return "Object not found!";
+        }
+    }
+
+    @Override
+    public CategoryDto updateCategory(CategoryDto categoryDto) {
+        Optional<Category> category = categoryRepository.findByNameAndDescription(categoryDto.getName(), categoryDto.getDescription());
+        if(category.isPresent()){
+            Category category1 = modelMapper.map(categoryDto, Category.class);
+            Category category2 = categoryRepository.saveAndFlush(category1);
+            return modelMapper.map(category1, CategoryDto.class);
+        }else{
+            throw new ResourceNotFoundException("Resource not found with this name and description : " +categoryDto.getName()+ " , " +categoryDto.getDescription());
         }
     }
 }

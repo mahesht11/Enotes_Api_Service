@@ -73,4 +73,14 @@ public class CategoryController {
             return new ResponseEntity<>(response, HttpStatus.FOUND);
         }
     }
+
+    @PutMapping("/update-category")
+    public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto){
+        CategoryDto categoryDto1 = categoryService.updateCategory(categoryDto);
+        if(ObjectUtils.isEmpty(categoryDto1)){
+            return new ResponseEntity<>("Object not updated", HttpStatus.INTERNAL_SERVER_ERROR);
+        }else {
+            return new ResponseEntity<>("Object updated Successfully!", HttpStatus.FOUND);
+        }
+    }
 }
