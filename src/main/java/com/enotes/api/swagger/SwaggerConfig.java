@@ -10,23 +10,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
-@Configuration
+/*@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
     @Bean
     public Docket postsApi(){
         return new Docket(DocumentationType.SWAGGER_2).groupName("mahi tech").apiInfo(apiInfo()).select()
-                .paths(regex("/student.*")).build();
+                .paths(regex("/api/v1/category.*")).build();
     }
 
     private ApiInfo apiInfo(){
-        return new ApiInfoBuilder().title("Student Management")
+        return new ApiInfoBuilder().title("Enotes Api Service")
                 .description("Sample documentation")
                 .termsOfServiceUrl("https://test.com")
-                .license("Student service")
+                .license("Enotes Api Service")
                 .licenseUrl("https://www.mahitech.com")
                 .version("1.0")
                 .build();
     }
-}
+}*/
