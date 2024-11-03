@@ -3,7 +3,7 @@ pipeline {
     stages {
     stage('git repo & clean') {
     steps {
-        bat "rmdir /s /q enotes_api"
+        //bat "rmdir /s /q enotes_api"
         bat "git clone https://github.com/mahesht11/Enotes_Api_Service.git"
         bat "mvn clean -f enotes_api_service"
         }
