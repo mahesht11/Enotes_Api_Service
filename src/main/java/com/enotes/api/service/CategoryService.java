@@ -18,6 +18,5 @@ public interface CategoryService {
 
     String deleteCategoryById(Integer id);
 
-
     CategoryDto updateCategory(CategoryDto categoryDto);
 }

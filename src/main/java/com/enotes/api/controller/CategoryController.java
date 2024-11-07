@@ -32,7 +32,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/category")
+    @GetMapping("/get-all-category")
     public ResponseEntity<?> getAllCategory(){
         log.info("CategoryController.class and getAllCategory() : ");
         List<CategoryDto> categoryDtoList = categoryService.getAllCategory();
@@ -56,6 +56,7 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCategoryDataiilsById(@PathVariable Integer id){
+        log.info("CategoryController.class and getCategoryDataiilsById() with this ID : "+id);
         CategoryDto categoryDto = categoryService.getCategoryDataiilsById(id);
         if(ObjectUtils.isEmpty(categoryDto)){
             return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
@@ -66,6 +67,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategoryById(@PathVariable Integer id){
+        log.info("CategoryController.class and deleteCategoryById() with this ID : "+id);
         String response = categoryService.deleteCategoryById(id);
         if(response.isEmpty()){
             return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
@@ -76,6 +78,7 @@ public class CategoryController {
 
     @PutMapping("/update-category")
     public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto){
+        log.info("CategoryController.class and updateCategory() : ");
         CategoryDto categoryDto1 = categoryService.updateCategory(categoryDto);
         if(ObjectUtils.isEmpty(categoryDto1)){
             return new ResponseEntity<>("Object not updated", HttpStatus.INTERNAL_SERVER_ERROR);

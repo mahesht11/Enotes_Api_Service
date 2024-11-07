@@ -55,28 +55,31 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto getCategoryDataiilsById(Integer id) {
+        log.info("CategoryServiceImpl.class and getCategoryDataiilsById() with this id : "+id);
         Optional<Category> category = categoryRepository.findById(id);
         if(category.isPresent()){
             return modelMapper.map(category.get(), CategoryDto.class);
         }else{
-            return null;
+            throw new ResourceNotFoundException("Resource not found with this Id : " + id);
         }
 
     }
 
     @Override
     public String deleteCategoryById(Integer id) {
+        log.info("CategoryServiceImpl.class and deleteCategoryById() with this id : "+id);
         Optional<Category> category = categoryRepository.findById(id);
         if(category.isPresent()){
             categoryRepository.delete(category.get());
             return "Object deleted the Successfully!";
         }else{
-            return "Object not found!";
+            throw new ResourceNotFoundException("Resource not found with this Id : " + id);
         }
     }
 
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto) {
+        log.info("CategoryServiceImpl.class and updateCategory() : ");
         Optional<Category> category = categoryRepository.findByNameAndDescription(categoryDto.getName(), categoryDto.getDescription());
         if(category.isPresent()){
             Category category1 = modelMapper.map(categoryDto, Category.class);
