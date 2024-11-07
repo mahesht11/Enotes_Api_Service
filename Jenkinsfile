@@ -18,19 +18,26 @@ pipeline {
         bat "mvn test -f enotes_api_service"
         }
     }
- stage('Sonarqube') {
-    steps {
-        withSonarQubeEnv('sonarqube') {
+    stage('Sonarqube') {
+        steps {
+            withSonarQubeEnv('sonarqube') {
             bat "mvn clean package sonar:sonar"
+            }
         }
     }
-}
+    stage('build docker image'){
+        steps {
+            script {
+            bat " docker build -t 276983/Enotes_Api_Service-0.0.1-SNAPSHOT.jar"
+            }
+        }
+    }
     stage('package'){
     steps{
         bat "mvn package -f enotes_api_service"
         }
     }
 
-    }
+ }
 
 }

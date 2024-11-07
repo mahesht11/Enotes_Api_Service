@@ -17,4 +17,6 @@ public interface CategoryService {
     CategoryDto getCategoryDataiilsById(Integer id);
 
     String deleteCategoryById(Integer id);
+
+    CategoryDto updateCategory(CategoryDto categoryDto);
 }
