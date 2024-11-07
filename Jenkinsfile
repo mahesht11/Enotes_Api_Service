@@ -10,12 +10,12 @@ pipeline {
     }
     stage('install'){
         steps {
-        bat "mvn install -f enotes_api"
+        bat "mvn install -f enotes_api_service"
         }
     }
     stage('test'){
         steps{
-        bat "mvn test -f enotes_api"
+        bat "mvn test -f enotes_api_service"
         }
     }
     stage('Sonarqube') {
@@ -34,7 +34,7 @@ pipeline {
     }
     stage('package'){
         steps{
-        bat "mvn package -f enotes_api"
+        bat "mvn package -f enotes_api_service"
         }
     }
 
