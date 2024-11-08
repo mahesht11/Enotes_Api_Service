@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
+    public static final String NOT_FOUND = "Resource not found with this name : ";
+
     @Autowired
     ModelMapper modelMapper;
 
@@ -61,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
         if(category.isPresent()){
             return modelMapper.map(category.get(), CategoryDto.class);
         }else{
-            throw new ResourceNotFoundException("Resource not found with this name : " + name);
+            throw new ResourceNotFoundException(NOT_FOUND + name);
         }
 
     }
@@ -69,12 +71,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public String deleteCategoryByName(String name) {
         log.info("CategoryServiceImpl.class and deleteCategoryById() with this name : "+ name);
-        Optional<Category> category = categoryRepository.findByName(name);;
+        Optional<Category> category = categoryRepository.findByName(name);
         if(category.isPresent()){
             categoryRepository.delete(category.get());
             return "Object deleted the Successfully!";
         }else{
-            throw new ResourceNotFoundException("Resource not found with this name : " + name);
+            throw new ResourceNotFoundException(NOT_FOUND + name);
         }
     }
 
@@ -90,7 +92,7 @@ public class CategoryServiceImpl implements CategoryService {
             Category category2 = categoryRepository.saveAndFlush(category.get());
             return modelMapper.map(category2, CategoryDto.class);
         }else{
-            throw new ResourceNotFoundException("Resource not found with this name : " +categoryDto.getName());
+            throw new ResourceNotFoundException(NOT_FOUND +categoryDto.getName());
         }
     }
 }

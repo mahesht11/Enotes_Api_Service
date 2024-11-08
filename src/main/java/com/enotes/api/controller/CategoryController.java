@@ -67,7 +67,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{name}")
-    public ResponseEntity<?> deleteCategoryByName(@PathVariable String name){
+    public ResponseEntity<String> deleteCategoryByName(@PathVariable String name){
         log.info("CategoryController.class and deleteCategoryByName() with this name : "+ name);
         String response = categoryService.deleteCategoryByName(name);
         if(response.isEmpty()){

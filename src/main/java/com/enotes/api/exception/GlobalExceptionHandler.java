@@ -65,10 +65,4 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler(InvalidArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleInvalidArgumentException(InvalidArgumentException e){
-        Map<String, String> map = new HashMap<>();
-        return map;
-    }
 }
