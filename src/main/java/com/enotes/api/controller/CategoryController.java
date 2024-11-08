@@ -22,7 +22,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/save-category")
-    public ResponseEntity<?> saveCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<String> saveCategory(@RequestBody CategoryDto categoryDto){
         log.info("CategoryController.class and saveCategory() : ");
         CategoryDto categoryDto1 = categoryService.saveCategory(categoryDto);
         if(ObjectUtils.isEmpty(categoryDto1)){
@@ -61,7 +61,7 @@ public class CategoryController {
         if(ObjectUtils.isEmpty(categoryDto)){
             return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
         }else {
-            return new ResponseEntity<>("Object found successfully!", HttpStatus.FOUND);
+            return new ResponseEntity<>(categoryDto, HttpStatus.FOUND);
         }
     }
 
@@ -77,7 +77,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update-category")
-    public ResponseEntity<?> updateCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<String> updateCategory(@RequestBody CategoryDto categoryDto){
         log.info("CategoryController.class and updateCategory() : ");
         CategoryDto categoryDto1 = categoryService.updateCategory(categoryDto);
         if(ObjectUtils.isEmpty(categoryDto1)){

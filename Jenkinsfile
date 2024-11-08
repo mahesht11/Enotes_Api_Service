@@ -28,7 +28,7 @@ pipeline {
     stage('build docker image'){
         steps {
             script {
-            bat " docker build -t 276983/Enotes_Api_Service-0.0.1-SNAPSHOT.jar"
+            bat " docker build -t 276983/enotes_api_service"
             }
         }
     }
