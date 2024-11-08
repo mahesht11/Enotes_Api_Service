@@ -6,12 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-@Builder
+
 @Slf4j
+@Builder
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -47,5 +51,24 @@ public class GlobalExceptionHandler {
                                         .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 
+    }
+
+    @ExceptionHandler(ResourseExistException.class)
+    public ResponseEntity<ErrorDetails> handleResourseExistException(ResourseExistException e, WebRequest request){
+        log.error("Global Exception handler : handle ResourseExistException :: " + e.getMessage());
+        ErrorDetails errorDetails = ErrorDetails.builder()
+                .timestamp(new Date())
+                .message(e.getMessage())
+                .details(request.getDescription(false))
+                .build();
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+
+    }
+
+    @ExceptionHandler(InvalidArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleInvalidArgumentException(InvalidArgumentException e){
+        Map<String, String> map = new HashMap<>();
+        return map;
     }
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Builder
 @Table(name = "CATEGORY")
 @NoArgsConstructor
 @AllArgsConstructor

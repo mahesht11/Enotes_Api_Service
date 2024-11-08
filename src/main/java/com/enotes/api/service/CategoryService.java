@@ -14,9 +14,9 @@ public interface CategoryService {
 
     List<CategoryDto> getActiveCategory();
 
-    CategoryDto getCategoryDataiilsById(Integer id);
+    CategoryDto getCategoryDataiilsByName(String name);
 
-    String deleteCategoryById(Integer id);
+    String deleteCategoryByName(String name);
 
     CategoryDto updateCategory(CategoryDto categoryDto);
 }

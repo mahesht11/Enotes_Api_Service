@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +23,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/save-category")
-    public ResponseEntity<String> saveCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<String> saveCategory(@Valid @RequestBody CategoryDto categoryDto){
         log.info("CategoryController.class and saveCategory() : ");
         CategoryDto categoryDto1 = categoryService.saveCategory(categoryDto);
         if(ObjectUtils.isEmpty(categoryDto1)){
@@ -32,7 +33,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/get-all-category")
+    @GetMapping("/")
     public ResponseEntity<?> getAllCategory(){
         log.info("CategoryController.class and getAllCategory() : ");
         List<CategoryDto> categoryDtoList = categoryService.getAllCategory();
@@ -54,10 +55,10 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryDataiilsById(@PathVariable Integer id){
-        log.info("CategoryController.class and getCategoryDataiilsById() with this ID : "+id);
-        CategoryDto categoryDto = categoryService.getCategoryDataiilsById(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<?> getCategoryDatails(@PathVariable String name){
+        log.info("CategoryController.class and getCategoryDataiilsByName() with this name : "+ name);
+        CategoryDto categoryDto = categoryService.getCategoryDataiilsByName(name);
         if(ObjectUtils.isEmpty(categoryDto)){
             return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
         }else {
@@ -65,10 +66,10 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategoryById(@PathVariable Integer id){
-        log.info("CategoryController.class and deleteCategoryById() with this ID : "+id);
-        String response = categoryService.deleteCategoryById(id);
+    @DeleteMapping("/{name}")
+    public ResponseEntity<?> deleteCategoryByName(@PathVariable String name){
+        log.info("CategoryController.class and deleteCategoryByName() with this name : "+ name);
+        String response = categoryService.deleteCategoryByName(name);
         if(response.isEmpty()){
             return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
         }else {
@@ -76,8 +77,8 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("/update-category")
-    public ResponseEntity<String> updateCategory(@RequestBody CategoryDto categoryDto){
+    @PutMapping("/update")
+    public ResponseEntity<String> updateCategory(@Valid @RequestBody CategoryDto categoryDto){
         log.info("CategoryController.class and updateCategory() : ");
         CategoryDto categoryDto1 = categoryService.updateCategory(categoryDto);
         if(ObjectUtils.isEmpty(categoryDto1)){
