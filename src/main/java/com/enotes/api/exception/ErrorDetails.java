@@ -13,8 +13,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class ErrorDetails {
 
-    public Date timestamp;
-    public String message;
-    public String details;
+    private Date timestamp;
+    private String message;
+    private String details;
 
 }
