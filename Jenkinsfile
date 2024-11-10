@@ -25,13 +25,6 @@ pipeline {
             }
         }
     }
-    stage('build docker image'){
-        steps {
-            script {
-            bat " docker build -t 276983/enotes_api_service"
-            }
-        }
-    }
     stage('package'){
     steps{
         bat "mvn package -f enotes_api_service"
