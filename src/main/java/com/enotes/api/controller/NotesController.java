@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -23,9 +25,9 @@ public class NotesController {
     NotesService notesService;
 
     @PostMapping("/save-notes")
-    public ResponseEntity<?> createNotes(@Valid @RequestBody NotesDto notesDto){
+    public ResponseEntity<String> createNotes(String notes, @RequestParam MultipartFile file) throws IOException {
         log.info(" NotesController class and createNotes method : ");
-        NotesDto notesDto1 = notesService.createNotes(notesDto);
+        NotesDto notesDto1 = notesService.createNotes(notes,file);
         if(ObjectUtils.isEmpty(notesDto1)){
             return new ResponseEntity<>("Notes is not saved successfully!", HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
@@ -42,6 +44,5 @@ public class NotesController {
         }else{
             return new ResponseEntity<>(notesDtoList, HttpStatus.FOUND);
         }
-
     }
 }

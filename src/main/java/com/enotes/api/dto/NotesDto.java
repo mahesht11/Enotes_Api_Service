@@ -1,6 +1,7 @@
 package com.enotes.api.dto;
 
 import com.enotes.api.entity.Category;
+import com.enotes.api.entity.FileDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +24,5 @@ public class NotesDto {
     private Date createdOn;
     private Date updatedOn;
     private Category category;
+    private FileDetails fileDetails;
 }

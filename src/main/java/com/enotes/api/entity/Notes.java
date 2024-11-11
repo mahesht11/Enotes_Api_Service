@@ -25,6 +25,12 @@ public class Notes {
     private Integer updatedBy;
     private Date createdOn;
     private Date updatedOn;
-    private Integer categoryId;
-    private Integer fileId;
+
+    @ManyToOne
+    @JoinColumn(name="category", nullable=false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="filedetails", nullable=false)
+    private FileDetails fileDetails;
 }
