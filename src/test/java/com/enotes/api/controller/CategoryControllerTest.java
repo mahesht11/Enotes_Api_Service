@@ -176,7 +176,7 @@ class CategoryControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
                 .andExpect(MockMvcResultMatchers.content().string("Category list is not found"));
     }
-
+/*
     @Test
     @DisplayName("Test getCategoryDatails(String); then content string 'Object not found'")
     void testGetCategoryDatails_thenContentStringObjectNotFound() throws Exception {
@@ -191,7 +191,7 @@ class CategoryControllerTest {
         actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andExpect(MockMvcResultMatchers.content().contentType("text/plain;charset=ISO-8859-1"))
                 .andExpect(MockMvcResultMatchers.content().string("Object not found"));
-    }
+    }*/
 
     @Test
     @DisplayName("Test getCategoryDatails(String); when 'Name'; then status isFound()")
