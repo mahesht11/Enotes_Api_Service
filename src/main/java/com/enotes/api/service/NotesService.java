@@ -3,8 +3,6 @@ package com.enotes.api.service;
 import com.enotes.api.dto.NotesDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 

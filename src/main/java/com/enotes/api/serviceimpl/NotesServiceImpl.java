@@ -1,4 +1,4 @@
-package com.enotes.api.serviceImpl;
+package com.enotes.api.serviceimpl;
 
 import com.enotes.api.dto.NotesDto;
 import com.enotes.api.entity.Category;
@@ -11,7 +11,6 @@ import com.enotes.api.repository.FileRepository;
 import com.enotes.api.repository.NotesRepository;
 import com.enotes.api.service.NotesService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.modelmapper.ModelMapper;
@@ -35,7 +34,7 @@ public class NotesServiceImpl implements NotesService {
     ModelMapper modelMapper;
 
     //@Value("${file.upload.path}")
-    public String uploadPath = "notes/";
+    public static final String uploadPath = "notes/";
 
     @Autowired
     NotesRepository notesRepository;

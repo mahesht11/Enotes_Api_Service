@@ -24,7 +24,7 @@ pipeline {
             bat "mvn clean package sonar:sonar"
             }
         }
-    }
+        }
     stage('package'){
     steps{
         bat "mvn package -f enotes_api_service"

@@ -56,14 +56,13 @@ public class CategoryController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<?> getCategoryDatails(@PathVariable String name){
+    public ResponseEntity<CategoryDto> getCategoryDatails(@PathVariable String name){
         log.info("CategoryController.class and getCategoryDataiilsByName() with this name : "+ name);
         CategoryDto categoryDto = categoryService.getCategoryDataiilsByName(name);
-        if(ObjectUtils.isEmpty(categoryDto)){
-            return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
-        }else {
+        if(!ObjectUtils.isEmpty(categoryDto)) {
             return new ResponseEntity<>(categoryDto, HttpStatus.FOUND);
         }
+        return null;
     }
 
     @DeleteMapping("/{name}")
