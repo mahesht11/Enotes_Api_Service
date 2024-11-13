@@ -1,4 +1,4 @@
-package com.enotes.api.serviceImpl;
+package com.enotes.api.serviceimpl;
 
 import com.enotes.api.dto.CategoryDto;
 import com.enotes.api.entity.Category;
