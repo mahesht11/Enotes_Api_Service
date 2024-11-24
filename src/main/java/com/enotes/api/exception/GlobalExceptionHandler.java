@@ -62,4 +62,15 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(IllegalFileFormatException.class)
+    public ResponseEntity<ErrorDetails> handleIllegalFileFormatException(IllegalFileFormatException e, WebRequest request){
+        log.error("Global Exception handler : handle IllegalFileFormatException :: " + e.getMessage());
+        ErrorDetails errorDetails = ErrorDetails.builder()
+                .timestamp(new Date())
+                .message(e.getMessage())
+                .details(request.getDescription(false))
+                .build();
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+
+    }
 }
